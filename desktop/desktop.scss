@@ -1,0 +1,80 @@
+// Desktop only: render the liked-users popup as a compact avatar grid.
+// On mobile the popup opens as a bottom-sheet modal, which is too large for
+// a grid — we leave the default vertical user list there.
+
+// Shrink the popup to fit the grid when there are only a few likers.
+.post-users-popup {
+  width: auto;
+  min-width: 0;
+  max-width: 300px;
+
+  &__sticky-header:empty {
+    display: none;
+  }
+
+  &__body {
+    height: auto;
+    max-height: 320px;
+    padding-top: 0;
+    display: flex;
+    align-items: safe center;
+    justify-content: center;
+  }
+}
+
+// Remove DMenu inner padding so the popup hugs the grid.
+.fk-d-menu__inner-content:has(.post-users-popup) {
+  padding: 0;
+}
+
+// Fill row-wise, wrap after $max-columns avatars. Center the grid in the popup.
+// Each slot = avatar (1.5em) + gap (0.25em) = 1.75em; cap width at 8 slots.
+$max-columns: 8;
+
+.post-users-popup__body > * {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 0.25em;
+  padding: 0.25em;
+  max-width: calc(#{$max-columns} * 1.75em);
+  margin: 0 auto;
+
+  // Sentinel only needs to exist for IntersectionObserver; take it out of flow so
+  // it doesn't reserve a flex row that would offset the vertical centering.
+  > .load-more-sentinel {
+    position: absolute;
+    height: 0;
+    width: 0;
+    margin: 0;
+  }
+
+  // Hide the spinner wrapper when it has no active spinner child; otherwise
+  // the empty box claims a full-width flex row and shows as blank space.
+  > .loading-container:not(:has(.spinner)) {
+    display: none;
+  }
+
+  > .loading-container:has(.spinner) {
+    flex-basis: 100%;
+    padding: 0;
+    margin: 0;
+  }
+}
+
+.post-users-popup__item {
+  display: block;
+  padding: 0;
+
+  &:hover {
+    background: transparent;
+  }
+
+  .post-users-popup__user-info,
+  .post-users-popup__reaction {
+    display: none;
+  }
+
+  // Leave avatars at their native `small` size (24px) — downscaling with CSS
+  // makes them look fuzzy.
+}
