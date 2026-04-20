@@ -31,7 +31,7 @@ nav.post-controls:not(:has(.post-action-menu__like)) .post-action-menu__like-cou
   display: inline-flex;
   flex-direction: row-reverse;
   align-items: center;
-  gap: 0.25em;
+  gap: 0.6em;
 }
 
 // Shrink the popup to fit the grid when there are only a few likers.
