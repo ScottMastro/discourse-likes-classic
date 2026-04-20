@@ -20,10 +20,23 @@ nav.post-controls:has(.post-action-menu__like-count) {
   display: none;
 }
 
+// Shrink the popup to fit the grid when there are only a few likers.
+.post-users-popup {
+  width: auto;
+  min-width: 0;
+  max-width: 300px;
+
+  &__body {
+    height: auto;
+    max-height: 320px;
+  }
+}
+
 // Turn the likes popup list into a compact grid of avatars (name + reaction icon hidden).
 .post-users-popup__body > * {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(3em, 1fr));
+  grid-template-columns: repeat(auto-fill, 1.75em);
+  justify-content: start;
   gap: 0.25em;
   padding: 0.5em;
 
@@ -35,7 +48,11 @@ nav.post-controls:has(.post-action-menu__like-count) {
 
 .post-users-popup__item {
   display: block;
-  padding: 0.25em;
+  padding: 0;
+
+  &:hover {
+    background: transparent;
+  }
 
   .post-users-popup__user-info,
   .post-users-popup__reaction {
@@ -43,8 +60,8 @@ nav.post-controls:has(.post-action-menu__like-count) {
   }
 
   .post-users-popup__avatar-link img {
-    width: 100%;
-    height: auto;
+    width: 1.75em;
+    height: 1.75em;
   }
 }
 
