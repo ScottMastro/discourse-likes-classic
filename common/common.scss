@@ -81,12 +81,13 @@ $max-columns: 8;
     margin: 0;
   }
 
-  // Hide the not-loading spinner wrapper; it's empty but still claims a row.
-  > .loading-container[data-loading="false"] {
+  // Hide the spinner wrapper when it has no active spinner child; otherwise
+  // the empty box claims a full-width flex row and shows as blank space.
+  > .loading-container:not(:has(.spinner)) {
     display: none;
   }
 
-  > .loading-container[data-loading="true"] {
+  > .loading-container:has(.spinner) {
     flex-basis: 100%;
     padding: 0;
     margin: 0;
