@@ -6,19 +6,23 @@ nav.post-controls:has(.post-action-menu__like-count) {
   .post-action-menu__like-count {
     order: 1;
     margin-left: auto;
-    margin-right: -0.25em;
-    padding-right: 0;
   }
 
   .actions {
     order: 2;
     margin-left: 0;
+
+    // pull the first action button closer to the like-count
+    > :first-child {
+      margin-left: -0.25em;
+    }
   }
 }
 
 // Old trigger showed only the count — hide the heart icon on the like-count button
 // so it doesn't duplicate the heart already shown by the adjacent like toggle.
-.post-action-menu__like-count .d-icon {
+// On your own posts the like button isn't rendered, so keep the heart there.
+nav.post-controls:has(.post-action-menu__like) .post-action-menu__like-count .d-icon {
   display: none;
 }
 
@@ -44,16 +48,18 @@ nav.post-controls:has(.post-action-menu__like-count) {
   padding: 0;
 }
 
-// Fill row-wise, wrap after $max-columns avatars.
-// Each slot = avatar (1.75em) + gap (0.25em) = 2em; cap width at 8 slots.
+// Fill row-wise, wrap after $max-columns avatars. Center the grid in the popup.
+// Each slot = avatar (1.5em) + gap (0.25em) = 1.75em; cap width at 8 slots.
 $max-columns: 8;
 
 .post-users-popup__body > * {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 0.25em;
   padding: 0.25em;
-  max-width: calc(#{$max-columns} * 2em);
+  max-width: calc(#{$max-columns} * 1.75em);
+  margin: 0 auto;
 
   > .load-more-sentinel {
     flex-basis: 100%;
@@ -85,9 +91,6 @@ $max-columns: 8;
     display: none;
   }
 
-  .post-users-popup__avatar-link img {
-    width: 1.75em;
-    height: 1.75em;
-  }
+  // Leave avatars at their native `small` size (24px) — downscaling with CSS
+  // makes them look fuzzy.
 }
-
