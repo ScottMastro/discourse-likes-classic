@@ -20,3 +20,31 @@ nav.post-controls:has(.post-action-menu__like-count) {
   display: none;
 }
 
+// Turn the likes popup list into a compact grid of avatars (name + reaction icon hidden).
+.post-users-popup__body > * {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(3em, 1fr));
+  gap: 0.25em;
+  padding: 0.5em;
+
+  > .load-more-sentinel,
+  > .loading-container {
+    grid-column: 1 / -1;
+  }
+}
+
+.post-users-popup__item {
+  display: block;
+  padding: 0.25em;
+
+  .post-users-popup__user-info,
+  .post-users-popup__reaction {
+    display: none;
+  }
+
+  .post-users-popup__avatar-link img {
+    width: 100%;
+    height: auto;
+  }
+}
+
