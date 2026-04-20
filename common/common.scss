@@ -72,20 +72,24 @@ $max-columns: 8;
   max-width: calc(#{$max-columns} * 1.75em);
   margin: 0 auto;
 
+  // Sentinel only needs to exist for IntersectionObserver; take it out of flow so
+  // it doesn't reserve a flex row that would offset the vertical centering.
   > .load-more-sentinel {
-    flex-basis: 100%;
+    position: absolute;
     height: 0;
+    width: 0;
     margin: 0;
   }
 
-  > .loading-container {
+  // Hide the not-loading spinner wrapper; it's empty but still claims a row.
+  > .loading-container[data-loading="false"] {
+    display: none;
+  }
+
+  > .loading-container[data-loading="true"] {
     flex-basis: 100%;
     padding: 0;
     margin: 0;
-
-    &:empty {
-      display: none;
-    }
   }
 }
 
