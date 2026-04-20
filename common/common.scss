@@ -6,6 +6,8 @@ nav.post-controls:has(.post-action-menu__like-count) {
   .post-action-menu__like-count {
     order: 1;
     margin-left: auto;
+    margin-right: -0.25em;
+    padding-right: 0;
   }
 
   .actions {
