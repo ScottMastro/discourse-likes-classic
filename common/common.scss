@@ -13,3 +13,10 @@ nav.post-controls:has(.post-action-menu__like-count) {
     margin-left: 0;
   }
 }
+
+// Old trigger showed only the count — hide the heart icon on the like-count button
+// so it doesn't duplicate the heart already shown by the adjacent like toggle.
+.post-action-menu__like-count .d-icon {
+  display: none;
+}
+
