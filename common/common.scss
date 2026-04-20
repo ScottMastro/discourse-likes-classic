@@ -26,10 +26,20 @@ nav.post-controls:has(.post-action-menu__like-count) {
   min-width: 0;
   max-width: 300px;
 
+  &__sticky-header:empty {
+    display: none;
+  }
+
   &__body {
     height: auto;
     max-height: 320px;
+    padding-top: 0;
   }
+}
+
+// Remove DMenu inner padding so the popup hugs the grid.
+.fk-d-menu__inner-content:has(.post-users-popup) {
+  padding: 0;
 }
 
 // Fill row-wise, wrap after $max-columns avatars.
@@ -40,7 +50,7 @@ $max-columns: 8;
   display: flex;
   flex-wrap: wrap;
   gap: 0.25em;
-  padding: 0.5em;
+  padding: 0.25em;
   max-width: calc(#{$max-columns} * 2em);
 
   > .load-more-sentinel,
