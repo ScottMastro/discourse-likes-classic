@@ -1,0 +1,13 @@
+// Move the like-count button back next to the like heart (right side of post-controls),
+// restoring the pre-39283 placement where count and heart sat together as a "double-button".
+nav.post-controls {
+  .post-action-menu__like-count {
+    order: 1;
+    margin-left: auto;
+  }
+
+  .actions {
+    order: 2;
+    margin-left: 0;
+  }
+}
