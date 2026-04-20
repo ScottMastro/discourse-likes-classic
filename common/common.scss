@@ -32,17 +32,20 @@ nav.post-controls:has(.post-action-menu__like-count) {
   }
 }
 
-// Turn the likes popup list into a compact grid of avatars (name + reaction icon hidden).
+// Fill row-wise, wrap after $max-columns avatars.
+// Each slot = avatar (1.75em) + gap (0.25em) = 2em; cap width at 8 slots.
+$max-columns: 8;
+
 .post-users-popup__body > * {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, 1.75em);
-  justify-content: start;
+  display: flex;
+  flex-wrap: wrap;
   gap: 0.25em;
   padding: 0.5em;
+  max-width: calc(#{$max-columns} * 2em);
 
   > .load-more-sentinel,
   > .loading-container {
-    grid-column: 1 / -1;
+    flex-basis: 100%;
   }
 }
 
