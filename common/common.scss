@@ -48,6 +48,9 @@ nav.post-controls:not(:has(.post-action-menu__like)) .post-action-menu__like-cou
     height: auto;
     max-height: 320px;
     padding-top: 0;
+    display: flex;
+    align-items: safe center;
+    justify-content: center;
   }
 }
 
