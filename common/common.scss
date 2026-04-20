@@ -21,9 +21,17 @@ nav.post-controls:has(.post-action-menu__like-count) {
 
 // Old trigger showed only the count — hide the heart icon on the like-count button
 // so it doesn't duplicate the heart already shown by the adjacent like toggle.
-// On your own posts the like button isn't rendered, so keep the heart there.
 nav.post-controls:has(.post-action-menu__like) .post-action-menu__like-count .d-icon {
   display: none;
+}
+
+// Your own posts have no like button. Render the filled heart to the right of the
+// count (where the like button would normally sit) so the number reads as "likes".
+nav.post-controls:not(:has(.post-action-menu__like)) .post-action-menu__like-count {
+  display: inline-flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  gap: 0.25em;
 }
 
 // Shrink the popup to fit the grid when there are only a few likers.
